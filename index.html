@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>Currency Exchange Dashboard</h1>
+            <p class="subtitle">Real-time exchange rates &amp; analysis</p>
+        </header>
+
+        <!-- Currency Toggle Section -->
+        <div class="currency-selector">
+            <h2>Select Currency</h2>
+            <div class="toggle-buttons">
+                <button class="btn btn--toggle active" data-currency="BRL">
+                    <span class="currency-code">BRL</span>
+                    <span class="currency-name">Brazilian Real</span>
+                </button>
+                <button class="btn btn--toggle" data-currency="ARS">
+                    <span class="currency-code">ARS</span>
+                    <span class="currency-name">Argentine Peso</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Control Bar -->
+        <div class="control-bar">
+            <div class="last-update">
+                <span class="label">Last Updated:</span>
+                <span id="lastUpdateTime" class="value">--</span>
+            </div>
+            <button id="refreshBtn" class="btn btn--primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <polyline points="1 20 1 14 7 14"></polyline>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                <span>Refresh Data</span>
+            </button>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-state hidden">
+            <div class="spinner"></div>
+            <p>Loading exchange rates...</p>
+        </div>
+
+        <!-- Main Content -->
+        <div id="mainContent" class="main-content">
+            <!-- Quotes Section -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>Exchange Quotes</h2>
+                    <p>Current rates from multiple sources</p>
+                </div>
+                <div class="card">
+                    <div class="table-container">
+                        <table class="quotes-table">
+                            <thead>
+                                <tr>
+                                    <th>Source</th>
+                                    <th>Buy Price</th>
+                                    <th>Sell Price</th>
+                                    <th>Spread</th>
+                                </tr>
+                            </thead>
+                            <tbody id="quotesTableBody">
+                                <!-- Populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Average Section -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>Market Average</h2>
+                    <p>Average rates across all sources</p>
+                </div>
+                <div class="average-cards">
+                    <div class="card card--average card--buy">
+                        <div class="card-icon">📈</div>
+                        <div class="card-content">
+                            <h3>Average Buy Price</h3>
+                            <div id="avgBuyPrice" class="price-value">--</div>
+                            <p class="price-label">per USD</p>
+                        </div>
+                    </div>
+                    <div class="card card--average card--sell">
+                        <div class="card-icon">📉</div>
+                        <div class="card-content">
+                            <h3>Average Sell Price</h3>
+                            <div id="avgSellPrice" class="price-value">--</div>
+                            <p class="price-label">per USD</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slippage Section -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>Slippage Analysis</h2>
+                    <p>Variance from market average</p>
+                </div>
+                <div class="card">
+                    <div class="table-container">
+                        <table class="slippage-table">
+                            <thead>
+                                <tr>
+                                    <th>Source</th>
+                                    <th>Buy Slippage</th>
+                                    <th>Sell Slippage</th>
+                                    <th>Overall</th>
+                                </tr>
+                            </thead>
+                            <tbody id="slippageTableBody">
+                                <!-- Populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="error-state hidden">
+            <div class="error-icon">⚠️</div>
+            <h3>Unable to Load Data</h3>
+            <p id="errorMessage">An error occurred while fetching exchange rates.</p>
+            <button class="btn btn--primary" onclick="window.location.reload()">Retry</button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p><strong>Note:</strong> Using simulated exchange rate data for demonstration purposes</p>
+            <p>Data refreshes every 30 seconds • Cache duration: 60 seconds</p>
+            <p class="disclaimer">Exchange rates are for informational purposes only</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
